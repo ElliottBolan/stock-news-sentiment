@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useAuth } from '../contexts/AuthContext';
+import { useAuth } from '../hooks/useAuth';
 import { useNavigate } from 'react-router-dom';
 import { Github, Mail } from 'lucide-react';
 import './Login.css';
@@ -53,8 +53,9 @@ const Login = () => {
         await signInWithEmail(email, password);
       }
       navigate('/my-stocks');
-    } catch (err: any) {
-      setError(err.message || 'Failed to authenticate');
+    } catch (err) {
+      const error = err as Error;
+      setError(error.message || 'Failed to authenticate');
       console.error(err);
     } finally {
       setLoading(false);

@@ -1,6 +1,6 @@
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { getUserSubscriptions, addSubscription, removeSubscription } from '../services/subscriptions';
-import { useAuth } from '../contexts/AuthContext';
+import { useAuth } from './useAuth';
 
 export const useSubscriptions = () => {
   const { user } = useAuth();

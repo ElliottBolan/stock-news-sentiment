@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { useSubscriptions } from '../hooks/useSubscriptions';
 import { getMultipleStockNews, searchStocks } from '../services/stockApi';
+import type { Stock } from '../types';
 import NewsCard from '../components/NewsCard';
 import { Star, Plus, Search, Loader, X } from 'lucide-react';
 import './MyStocks.css';
@@ -10,7 +11,7 @@ const MyStocks = () => {
   const { subscriptions, isLoading: subsLoading, addSubscription, removeSubscription, isSubscribed } = useSubscriptions();
   const [showAddStock, setShowAddStock] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
-  const [searchResults, setSearchResults] = useState<any[]>([]);
+  const [searchResults, setSearchResults] = useState<Stock[]>([]);
 
   const { data: news = [], isLoading: newsLoading } = useQuery({
     queryKey: ['my-stocks-news', subscriptions],
